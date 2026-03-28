@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Evitro – Branded Audio Identity Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Inter, sans-serif;
+    background:#0b0b0b;
+    color:#ffffff;
+    min-height:100vh;
+    user-select:none;
+    overflow-x:hidden;
+}
+.overlay-lock{
+    position:fixed; inset:0; pointer-events:none;
+    background:radial-gradient(circle at center, rgba(255,0,255,0.03), rgba(0,0,0,0.4));
+    z-index:2;
+}
+.header{
+    padding:90px 24px 70px;
+    text-align:center;
+    position:relative;
+}
+.header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, transparent 60%, rgba(255,0,255,0.15) 85%, rgba(255,0,255,0.3) 100%);
+    z-index:0;
+}
+.header > *{position:relative; z-index:1;}
+.header h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:42px;
+    margin:0;
+    letter-spacing:2px;
+    color:#ff00ff;
+}
+.header p{
+    margin-top:10px;
+    color:#aaa;
+    font-size:15px;
+}
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:40px 20px 100px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+}
+.card{
+    background:linear-gradient(180deg,#1a001a,#330033);
+    border-radius:22px;
+    padding:30px;
+    border:1px solid rgba(255,0,255,0.4);
+    box-shadow:0 25px 60px rgba(255,0,255,0.35);
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s;
+}
+.card:hover{transform:translateY(-6px);}
+.card::before{
+    content:"";
+    position:absolute;
+    inset:-20px;
+    background:
+      radial-gradient(circle at bottom center, rgba(255,0,255,0.25), transparent 45%),
+      radial-gradient(circle at top center, rgba(255,0,255,0.12), transparent 50%),
+      radial-gradient(circle at left center, rgba(200,0,255,0.12), transparent 55%),
+      radial-gradient(circle at right center, rgba(200,0,255,0.12), transparent 55%);
+    z-index:0;
+}
+.card > *{position:relative; z-index:1;}
+.card::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.02),transparent);
+    opacity:0; transition:.6s;
+}
+.card:hover::after{opacity:1;}
+.mode{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#ff00ff;
+}
+.title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px;
+    margin:6px 0 8px;
+}
+.desc{
+    font-size:13px;
+    color:#ccc;
+    line-height:1.5;
+}
+.controls{
+    margin-top:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+.play{
+    width:54px;height:54px;border-radius:50%;
+    border:1px solid rgba(255,0,255,0.5);
+    background:rgba(255,0,255,0.2);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:18px;
+}
+.progress-wrap{
+    flex:1;height:6px;background:#330033;border-radius:6px;overflow:hidden;
+}
+.progress{
+    height:100%;width:0%;background:linear-gradient(90deg,#ff00ff,#ff66ff);
+}
+.footer{
+    text-align:center;
+    padding:40px 20px;
+    font-size:11px;
+    color:#aaa;
+    border-top:1px solid rgba(255,0,255,0.2);
+}
+.whatsapp-btn{
+    display:inline-block;
+    padding:14px 20px;
+    border-radius:40px;
+    background:#ff00ff;
+    color:#fff;
+    font-weight:600;
+    text-decoration:none;
+    margin:20px 0;
+    transition:.3s;
+}
+.whatsapp-btn:hover{background:#ff66ff;}
+@keyframes ambientPulse{
+  0%{opacity:0.6; filter:blur(0px)}
+  50%{opacity:1; filter:blur(2px)}
+  100%{opacity:0.6; filter:blur(0px)}
+}
+@keyframes heroGlow{
+  0%{box-shadow:0 40px 80px rgba(255,0,255,0.25), 0 20px 40px rgba(0,0,0,0.2)}
+  50%{box-shadow:0 50px 120px rgba(255,0,255,0.45), 0 25px 50px rgba(0,0,0,0.25)}
+  100%{box-shadow:0 40px 80px rgba(255,0,255,0.25), 0 20px 40px rgba(0,0,0,0.2)}
+}
+.card::before{animation:ambientPulse 8s ease-in-out infinite;}
+.hero-base{animation:heroGlow 10s ease-in-out infinite;}
+</style>
+</head>
+<body>
+<div class="overlay-lock"></div>
+
+<div class="header">
+<h1>Evitro</h1>
+<p>Branded Audio Identity Demo · Curated Playlist Experience · Night Bar Vibe</p>
+<div class="hero-base" style="margin:60px auto 0;max-width:520px;height:80px;border-radius:24px;
+    background:linear-gradient(180deg, rgba(255,0,255,0.02), rgba(255,255,255,0));
+    box-shadow:0 40px 80px rgba(255,0,255,0.45), 0 20px 40px rgba(0,0,0,0.2);">
+</div>
+</div>
+
+<div class="container">
+<!-- 12 Branded Tracks -->
+<div class="card"><div class="mode">Arrival Mode</div><div class="title">Evitro Arrival Pulse</div><div class="desc">Energetic but welcoming beats to make first impressions vibrant.</div>
+<div class="controls"><div class="play" onclick="toggle('a1',this)">▶</div><div class="progress-wrap"><div class="progress" id="p1"></div></div></div>
+<audio id="a1" src="/EvitroArrivalPulse.mp3"></audio></div>
+
+<div class="card"><div class="mode">Lobby Mode</div><div class="title">Evitro Lobby Glow</div><div class="desc">Neon-inspired lounge groove for guests entering the bar.</div>
+<div class="controls"><div class="play" onclick="toggle('a2',this)">▶</div><div class="progress-wrap"><div class="progress" id="p2"></div></div></div>
+<audio id="a2" src="/EvitroLobbyGlow.mp3"></audio></div>
+
+<div class="card"><div class="mode">Evening Chill</div><div class="title">Evitro Purple Lounge</div><div class="desc">Smooth chill-out electronic with subtle bass, early evening mood.</div>
+<div class="controls"><div class="play" onclick="toggle('a3',this)">▶</div><div class="progress-wrap"><div class="progress" id="p3"></div></div></div>
+<audio id="a3" src="/EvitroPurpleLounge.mp3"></audio></div>
+
+<div class="card"><div class="mode">Daytime Leisure</div><div class="title">Evitro Day Spark</div><div class="desc">Light beats for casual daytime drinks or brunch.</div>
+<div class="controls"><div class="play" onclick="toggle('a4',this)">▶</div><div class="progress-wrap"><div class="progress" id="p4"></div></div></div>
+<audio id="a4" src="/EvitroDaySpark.mp3"></audio></div>
+
+<div class="card"><div class="mode">Social Mode</div><div class="title">Evitro Friends Vibe</div><div class="desc">Catchy Afro-pop / house fusion for social mingling.</div>
+<div class="controls"><div class="play" onclick="toggle('a5',this)">▶</div><div class="progress-wrap"><div class="progress" id="p5"></div></div></div>
+<audio id="a5" src="/EvitroFriendsVibe.mp3"></audio></div>
+
+<div class="card"><div class="mode">Cocktail Mode</div><div class="title">Evitro Neon Twist</div><div class="desc">Elevated lounge music for cocktail enjoyment.</div>
+<div class="controls"><div class="play" onclick="toggle('a6',this)">▶</div><div class="progress-wrap"><div class="progress" id="p6"></div></div></div>
+<audio id="a6" src="/EvitroNeonTwist.mp3"></audio></div>
+
+<div class="card"><div class="mode">Dinner Mode</div><div class="title">Evitro Gourmet Beats</div><div class="desc">Refined yet rhythmic sounds for dining guests.</div>
+<div class="controls"><div class="play" onclick="toggle('a7',this)">▶</div><div class="progress-wrap"><div class="progress" id="p7"></div></div></div>
+<audio id="a7" src="/EvitroGourmetBeats.mp3"></audio></div>
+
+<div class="card"><div class="mode">Sunset Mode</div><div class="title">Evitro Electric Sunset</div><div class="desc">Dynamic, warm-toned tracks capturing golden hour energy.</div>
+<div class="controls"><div class="play" onclick="toggle('a8',this)">▶</div><div class="progress-wrap"><div class="progress" id="p8"></div></div></div>
+<audio id="a8" src="/EvitroElectricSunset.mp3"></audio></div>
+
+<div class="card"><div class="mode">Night Mode</div><div class="title">Evitro Night Pulse</div><div class="desc">High-energy club-ready beats with dancefloor focus.</div>
+<div class="controls"><div class="play" onclick="toggle('a9',this)">▶</div><div class="progress-wrap"><div class="progress" id="p9"></div></div></div>
+<audio id="a9" src="/EvitroNightPulse.mp3"></audio></div>
+
+<div class="card"><div class="mode">Event Mode</div><div class="title">Evitro Signature Events</div><div class="desc">Exclusive tracks for VIP or special event nights.</div>
+<div class="controls"><div class="play" onclick="toggle('a10',this)">▶</div><div class="progress-wrap"><div class="progress" id="p10"></div></div></div>
+<audio id="a10" src="/EvitroSignatureEvents.mp3"></audio></div>
+
+<div class="card"><div class="mode">Late Night Mode</div><div class="title">Evitro Midnight Glow</div><div class="desc">Smooth, hypnotic beats for winding down the main floor.</div>
+<div class="controls"><div class="play" onclick="toggle('a11',this)">▶</div><div class="progress-wrap"><div class="progress" id="p11"></div></div></div>
+<audio id="a11" src="/EvitroMidnightGlow.mp3"></audio></div>
+
+<div class="card"><div class="mode">Wind-down Mode</div><div class="title">Evitro Neon Closure</div><div class="desc">Soft outro beats that leave a lasting memory of the night.</div>
+<div class="controls"><div class="play" onclick="toggle('a12',this)">▶</div><div class="progress-wrap"><div class="progress" id="p12"></div></div></div>
+<audio id="a12" src="/EvitroNeonClosure.mp3"></audio></div>
+</div>
+
+<!-- WhatsApp Button -->
+<div style="text-align:center;">
+<a class="whatsapp-btn" href="https://wa.me/263779388560?text=Hello%20WarStreet%20Studios,%20I%20am%20interested%20in%20the%20Evitro%20branded%20audio%20system." target="_blank">
+Contact WarStreet Studios
+</a>
+</div>
+
+<!-- Persuasion & Business Sections -->
+<div class="container" style="grid-template-columns:1fr;">
+<div class="card">
+<div class="mode">Why This Matters</div>
+<div class="title>Music Shapes Guest Experience</div>
+<div class="desc">
+Guests don’t remember only service—they remember how a bar made them feel.
+Branded playlists turn ambiance into identity and loyalty.
+</div>
+</div>
+
+<div class="card">
+<div class="mode">Business Impact</div>
+<div class="title">What Branded Audio Does</div>
+<div class="desc">
+• Increases average guest stay time<br>
+• Enhances mood and energy consistency<br>
+• Builds emotional brand association<br>
+• Strengthens bar identity<br>
+• Positions Evitro as premium & memorable
+</div>
+</div>
+
+<div class="card">
+<div class="mode">Deployment Zones</div>
+<div class="title">Where Playlists Are Applied</div>
+<div class="desc">
+• Entrance & Lobby<br>
+• Evening Chill & Lounge<br>
+• Daytime Leisure / Pre-party<br>
+• Social Areas & Cocktail Hours<br>
+• Dining / Night Crowd<br>
+• Special Events & VIP Nights<br>
+• Late Night Wind-down
+</div>
+</div>
+
+<div class="card">
+<div class="mode">Commercial Model</div>
+<div class="title">Branded Audio Service</div>
+<div class="desc">
+• Monthly sound curation<br>
+• Seasonal playlist updates<br>
+• Event-based sound design<br>
+• Bar audio brand ownership<br>
+• Exclusive premium guest experience
+</div>
+</div>
+
+<div class="card">
+<div class="mode">Partnership Vision</div>
+<div class="title">From Venue to Brand Identity</div>
+<div class="desc">
+This demo represents a long-term sound partnership. 
+Evitro becomes a venue with a defined sonic brand — not just a bar with background music.
+</div>
+</div>
+</div>
+
+<div class="footer">
+© 2026 · Evitro Branded Audio System · Demo Presentation · All Rights Reserved
+</div>
+
+<script>
+// Lock interactions
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = function(e){
+ if(e.keyCode==123) return false;
+ if(e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) return false;
+ if(e.ctrlKey && e.key.toLowerCase()=='u') return false;
+};
+document.body.onselectstart = () => false;
+document.body.ondragstart = () => false;
+
+// Audio Engine
+const audios = ['a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a12'];
+function toggle(id,btn){
+ audios.forEach(a=>{
+   if(a!==id){
+     const o=document.getElementById(a); o.pause(); o.currentTime=0;
+   }
+ });
+ const audio=document.getElementById(id);
+ if(audio.paused){audio.play(); btn.innerHTML='⏸';}
+ else{audio.pause(); btn.innerHTML='▶';}
+}
+
+setInterval(()=>{
+ audios.forEach((id,i)=>{
+   const a=document.getElementById(id);
+   const p=document.getElementById('p'+(i+1));
+   if(a.duration){p.style.width=(a.currentTime/a.duration*100)+'%';}
+ });
+},200);
+</script>
+</body>
+</html>
